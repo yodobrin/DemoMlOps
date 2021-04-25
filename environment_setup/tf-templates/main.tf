@@ -31,11 +31,13 @@ resource "azurerm_storage_account" "amlstor" {
 
 # Keyvault for AML Service
 resource "azurerm_key_vault" "amlkv" {
-  name                = "${var.BASE_NAME}-akv"
+  name                = "${var.BASE_NAME}-akv1"
   location            = data.azurerm_resource_group.amlrg.location
   resource_group_name = data.azurerm_resource_group.amlrg.name
   tenant_id           = data.azurerm_client_config.currentconfig.tenant_id
   sku_name            = "standard"
+  soft_delete_enabled = false
+  purge_protection_enabled = false
 }
 
 # App Insights for AML Service
